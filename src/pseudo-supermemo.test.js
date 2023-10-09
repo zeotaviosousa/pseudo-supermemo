@@ -26,10 +26,19 @@ it('should return +2 days as the next date when review first time and is medium'
   expect(nextDate).toEqual(twoMoreDays)
 })
 
-it('should return +1 day as the next date when review first time and is hard', () => {
+it('should return tomorrow as the next date when review first time and is hard', () => {
   const days = ['2023-10-05', '2023-10-06']
   const difficulty = ['hard']
-  const twoMoreDays = '2023-10-07'
+  const tomorrow = '2023-10-07'
+  const nextDate = pseudoSuperMemo(days, difficulty)
+
+  expect(nextDate).toEqual(tomorrow)
+})
+
+it('should return +1 week as the next date when review from second time and is easy', () => {
+  const days = ['2023-10-05', '2023-10-06', '2023-10-09']
+  const difficulty = ['easy', 'easy']
+  const twoMoreDays = '2023-10-16'
   const nextDate = pseudoSuperMemo(days, difficulty)
 
   expect(nextDate).toEqual(twoMoreDays)
@@ -39,14 +48,14 @@ it('should return +1 day as the next date when review first time and is hard', (
 /* 
     estudei
     revisao 0
-      revisar em +1 dia 
+      revisar em +1 dia          X
     revisao 1
       se fácil
-        revisar em +3 dias
+        revisar em +3 dias       X
       se médio
-        revisar em +2 dias
+        revisar em +2 dias       X
       se difícil
-        revisar em +1 dia
+        revisar em +1 dia        X
     revisao 2 em diante
       se facil
         revisar em +1 semana
@@ -54,6 +63,7 @@ it('should return +1 day as the next date when review first time and is hard', (
         revisar em +3 dias
       se difícil
         revisar em +1 dia
+        
     se 4 revisões seguidas forem fáceis 
       se facil
         revisar em +2 semana
