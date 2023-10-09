@@ -7,14 +7,14 @@ function pseudoSuperMemo(days, difficulty) {
   const isReviewFirstEasy = (difficulty && difficulty[0]) === 'easy'
 
   if(isStudyFirst) {
-    const currentDate = new Date(days[0].split('-'))
-    const nextDate = dateToString(addMoreDays(currentDate, 1))
+    const currentDate = composeCurrentDate(days[0])
+    const nextDate = composeNextDate(currentDate, 1)
     return nextDate
   }
 
   if(isReviewFirst && isReviewFirstEasy) {
-    const currentDate = new Date(days[1].split('-'))
-    const nextDate = dateToString(addMoreDays(currentDate, 3))
+    const currentDate = composeCurrentDate(days[1])
+    const nextDate = composeNextDate(currentDate, 3)
     return nextDate
   }
 }
@@ -25,6 +25,14 @@ function dateToString(date){
 
 function addMoreDays(currentDate, numberOfDays){
   return new Date(currentDate.setDate(currentDate.getDate() + numberOfDays))
+}
+
+function composeCurrentDate(date){
+  return new Date(date.split('-'))
+}
+
+function composeNextDate (currentDate, numberOfDays){
+  return dateToString(addMoreDays(currentDate, numberOfDays))
 }
 
 module.exports = pseudoSuperMemo
