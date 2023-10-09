@@ -7,3 +7,56 @@ it('should return tomorrow as the next date when study first time', () => {
 
   expect(nextDate).toEqual(tomorrow)
 })
+
+it('should return +3 days as the next date when review first time and is easy', () => {
+  const days = ['2023-10-05', '2023-10-06']
+  const difficulty = ['easy']
+  const threeMoreDays = '2023-10-09'
+  const nextDate = pseudoSuperMemo(days, difficulty)
+
+  expect(nextDate).toEqual(threeMoreDays)
+})
+
+
+/* 
+    estudei
+    revisao 0
+      revisar em +1 dia 
+    revisao 1
+      se fácil
+        revisar em +3 dias
+      se médio
+        revisar em +2 dias
+      se difícil
+        revisar em +1 dia
+    revisao 2 em diante
+      se facil
+        revisar em +1 semana
+      se médio
+        revisar em +3 dias
+      se difícil
+        revisar em +1 dia
+    se 4 revisões seguidas forem fáceis 
+      se facil
+        revisar em +2 semana
+      se médio
+        revisar em +1 semana
+      se difícil
+        revisar em +1 dia
+
+
+    >> ['2023-10-09']
+    << '2023-10-10'
+
+    >> ['2023-10-09', '2023-10-10'], ['easy']
+    << '2023-10-13'
+
+    >> ['2023-10-09', '2023-10-10', '2023-10-13'], ['easy', 'easy']
+    << '2023-10-20'
+
+    >> ['2023-10-09', '2023-10-10', '2023-10-13', '2023-10-20'], ['easy', 'easy', 'hard']
+    << '2023-10-21'
+
+    >> ['2023-10-09', '2023-10-10', '2023-10-13', '2023-10-20', '2023-10-21'], ['easy', 'easy', 'hard', 'medium']
+    << '2023-10-24'
+*/
