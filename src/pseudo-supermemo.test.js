@@ -17,6 +17,15 @@ it('should return +3 days as the next date when review first time and is easy', 
   expect(nextDate).toEqual(threeMoreDays)
 })
 
+it('should return +2 days as the next date when review first time and is medium', () => {
+  const days = ['2023-10-05', '2023-10-06']
+  const difficulty = ['medium']
+  const twoMoreDays = '2023-10-08'
+  const nextDate = pseudoSuperMemo(days, difficulty)
+
+  expect(nextDate).toEqual(twoMoreDays)
+})
+
 
 /* 
     estudei
