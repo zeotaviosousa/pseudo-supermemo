@@ -38,19 +38,19 @@ it('should return tomorrow as the next date when review first time and is hard',
 it('should return +1 week as the next date when review from second time and is easy', () => {
   const days = ['2023-10-05', '2023-10-06', '2023-10-09']
   const difficulty = ['easy', 'easy']
-  const twoMoreDays = '2023-10-16'
+  const oneMoreWeek = '2023-10-16'
   const nextDate = pseudoSuperMemo(days, difficulty)
 
-  expect(nextDate).toEqual(twoMoreDays)
+  expect(nextDate).toEqual(oneMoreWeek)
 })
 
 it('should return +3 days as the next date when review from second time and is medium', () => {
   const days = ['2023-10-05', '2023-10-06', '2023-10-09']
   const difficulty = ['easy', 'medium']
-  const twoMoreDays = '2023-10-12'
+  const threeMoreDays = '2023-10-12'
   const nextDate = pseudoSuperMemo(days, difficulty)
 
-  expect(nextDate).toEqual(twoMoreDays)
+  expect(nextDate).toEqual(threeMoreDays)
 })
 
 it('should return tomorrow as the next date when review from second time and is hard', () => {
