@@ -1,16 +1,16 @@
 // autoAvaliation: number
-// days: date[]
+// dates: date[]
 
-function pseudoSuperMemo(days, difficulties) {
-  const isStudyFirst = days.length === 1
+function pseudoSuperMemo(dates, difficulties) {
+  const isStudyFirst = dates.length === 1
 
   if(isStudyFirst) {
-    const currentDate = composeCurrentDate(days[0])
+    const currentDate = composeCurrentDate(dates[0])
     const nextDate = composeNextDate(currentDate, 1)
     return nextDate
   }
   
-  const isReviewFirst = days.length === 2
+  const isReviewFirst = dates.length === 2
   const isReviewFirstEasy = difficulties[0] === 'easy'
   const isReviewFirstMedium = difficulties[0] === 'medium'
   const isReviewFirstHard = difficulties[0] === 'hard'
@@ -25,43 +25,43 @@ function pseudoSuperMemo(days, difficulties) {
     ].every(difficulty => difficulty === 'easy')
 
   if(isReviewFirst && isReviewFirstEasy) {
-    const currentDate = composeCurrentDate(days[1])
+    const currentDate = composeCurrentDate(dates[1])
     const nextDate = composeNextDate(currentDate, 3)
     return nextDate
   }
 
   if(isReviewFirst && isReviewFirstMedium) {
-    const currentDate = composeCurrentDate(days[1])
+    const currentDate = composeCurrentDate(dates[1])
     const nextDate = composeNextDate(currentDate, 2)
     return nextDate
   }
 
   if(isReviewFirst && isReviewFirstHard) {
-    const currentDate = composeCurrentDate(days[1])
+    const currentDate = composeCurrentDate(dates[1])
     const nextDate = composeNextDate(currentDate, 1)
     return nextDate
   }
 
   if(isReviewsLastEasy) {
-    const currentDate = composeCurrentDate(days[days.length -1])
+    const currentDate = composeCurrentDate(dates[dates.length -1])
     const nextDate = composeNextDate(currentDate, 14)
     return nextDate
   }
 
   if(isReviewEasy) {
-    const currentDate = composeCurrentDate(days[days.length -1])
+    const currentDate = composeCurrentDate(dates[dates.length -1])
     const nextDate = composeNextDate(currentDate, 7)
     return nextDate
   }
 
   if(isReviewMedium) {
-    const currentDate = composeCurrentDate(days[days.length -1])
+    const currentDate = composeCurrentDate(dates[dates.length -1])
     const nextDate = composeNextDate(currentDate, 3)
     return nextDate
   }
 
   if(isReviewHard) {
-    const currentDate = composeCurrentDate(days[days.length -1])
+    const currentDate = composeCurrentDate(dates[dates.length -1])
     const nextDate = composeNextDate(currentDate, 1)
     return nextDate
   }
