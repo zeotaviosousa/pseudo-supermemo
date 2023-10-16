@@ -6,6 +6,7 @@ function pseudoSuperMemo(dates, difficulties) {
   const isStudyFirst = dates.length === 1
 
   if(isStudyFirst) return nextDate({ date: dates[0], numberOfDays: 1})
+  if(!difficulties) return
   
   const isReviewFirst = dates.length === 2
   const isReviewEasy = difficulties[difficulties.length - 1] === 'easy'

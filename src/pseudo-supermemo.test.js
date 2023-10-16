@@ -77,6 +77,13 @@ it('should return undefined when no date pass', () => {
   expect(nextDate).toEqual(undefined)
 })
 
+it('should return undefined when pass dates but dont pass difficulties', () => {
+  const days = ['2023-10-16', '2023-10-17']
+  const nextDate = pseudoSuperMemo(days)
+
+  expect(nextDate).toEqual(undefined)
+})
+
 
 /* 
     estudei
