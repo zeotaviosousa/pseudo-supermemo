@@ -4,11 +4,7 @@
 function pseudoSuperMemo(dates, difficulties) {
   const isStudyFirst = dates.length === 1
 
-  if(isStudyFirst) {
-    const currentDate = composeCurrentDate(dates[0])
-    const nextDate = composeNextDate(currentDate, 1)
-    return nextDate
-  }
+  if(isStudyFirst) return nextDate({ date: dates[0], numberOfDays: 1})
   
   const isReviewFirst = dates.length === 2
   const isReviewFirstEasy = difficulties[0] === 'easy'
@@ -24,47 +20,19 @@ function pseudoSuperMemo(dates, difficulties) {
       difficulties[difficulties.length - 1]
     ].every(difficulty => difficulty === 'easy')
 
-  if(isReviewFirst && isReviewFirstEasy) {
-    const currentDate = composeCurrentDate(dates[1])
-    const nextDate = composeNextDate(currentDate, 3)
-    return nextDate
-  }
+  if(isReviewFirst && isReviewFirstEasy) return nextDate({ date: dates[1], numberOfDays: 3 })
 
-  if(isReviewFirst && isReviewFirstMedium) {
-    const currentDate = composeCurrentDate(dates[1])
-    const nextDate = composeNextDate(currentDate, 2)
-    return nextDate
-  }
+  if(isReviewFirst && isReviewFirstMedium) return nextDate({ date: dates[1], numberOfDays: 2 })
 
-  if(isReviewFirst && isReviewFirstHard) {
-    const currentDate = composeCurrentDate(dates[1])
-    const nextDate = composeNextDate(currentDate, 1)
-    return nextDate
-  }
+  if(isReviewFirst && isReviewFirstHard) return nextDate({ date: dates[1], numberOfDays: 1 })
 
-  if(isReviewsLastEasy) {
-    const currentDate = composeCurrentDate(dates[dates.length -1])
-    const nextDate = composeNextDate(currentDate, 14)
-    return nextDate
-  }
+  if(isReviewsLastEasy) return nextDate({ date: dates[dates.length -1], numberOfDays: 14 })
 
-  if(isReviewEasy) {
-    const currentDate = composeCurrentDate(dates[dates.length -1])
-    const nextDate = composeNextDate(currentDate, 7)
-    return nextDate
-  }
+  if(isReviewEasy) return nextDate({ date: dates[dates.length -1], numberOfDays: 7})
 
-  if(isReviewMedium) {
-    const currentDate = composeCurrentDate(dates[dates.length -1])
-    const nextDate = composeNextDate(currentDate, 3)
-    return nextDate
-  }
+  if(isReviewMedium) return nextDate({ date: dates[dates.length -1], numberOfDays: 3 })
 
-  if(isReviewHard) {
-    const currentDate = composeCurrentDate(dates[dates.length -1])
-    const nextDate = composeNextDate(currentDate, 1)
-    return nextDate
-  }
+  if(isReviewHard) return nextDate({ date: dates[dates.length -1], numberOfDays: 1 })
 }
 
 function dateToString(date){
@@ -81,6 +49,12 @@ function composeCurrentDate(date){
 
 function composeNextDate (currentDate, numberOfDays){
   return dateToString(addMoreDays(currentDate, numberOfDays))
+}
+
+function nextDate(obj) {
+  const currentDate = composeCurrentDate(obj.date)
+  const nextDate = composeNextDate(currentDate, obj.numberOfDays)
+  return nextDate
 }
 
 module.exports = pseudoSuperMemo
