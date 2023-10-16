@@ -7,9 +7,6 @@ function pseudoSuperMemo(dates, difficulties) {
   if(isStudyFirst) return nextDate({ date: dates[0], numberOfDays: 1})
   
   const isReviewFirst = dates.length === 2
-  const isReviewFirstEasy = difficulties[0] === 'easy'
-  const isReviewFirstMedium = difficulties[0] === 'medium'
-  const isReviewFirstHard = difficulties[0] === 'hard'
   const isReviewEasy = difficulties[difficulties.length - 1] === 'easy'
   const isReviewMedium = difficulties[difficulties.length - 1] === 'medium'
   const isReviewHard = difficulties[difficulties.length - 1] === 'hard'
@@ -20,19 +17,22 @@ function pseudoSuperMemo(dates, difficulties) {
       difficulties[difficulties.length - 1]
     ].every(difficulty => difficulty === 'easy')
 
-  if(isReviewFirst && isReviewFirstEasy) return nextDate({ date: dates[1], numberOfDays: 3 })
-
-  if(isReviewFirst && isReviewFirstMedium) return nextDate({ date: dates[1], numberOfDays: 2 })
-
-  if(isReviewFirst && isReviewFirstHard) return nextDate({ date: dates[1], numberOfDays: 1 })
-
-  if(isReviewsLastEasy) return nextDate({ date: dates[dates.length -1], numberOfDays: 14 })
-
-  if(isReviewEasy) return nextDate({ date: dates[dates.length -1], numberOfDays: 7})
-
-  if(isReviewMedium) return nextDate({ date: dates[dates.length -1], numberOfDays: 3 })
-
-  if(isReviewHard) return nextDate({ date: dates[dates.length -1], numberOfDays: 1 })
+  switch(true) {
+    case isReviewFirst && isReviewEasy:
+      return nextDate({ date: dates[1], numberOfDays: 3 })
+    case isReviewFirst && isReviewMedium:
+      return nextDate({ date: dates[1], numberOfDays: 2 })
+    case isReviewFirst && isReviewHard:
+      return nextDate({ date: dates[1], numberOfDays: 1 })
+    case isReviewsLastEasy:
+      return nextDate({ date: dates[dates.length -1], numberOfDays: 14 })
+    case isReviewEasy:
+      return nextDate({ date: dates[dates.length -1], numberOfDays: 7})
+    case isReviewMedium:
+      return nextDate({ date: dates[dates.length -1], numberOfDays: 3 })
+    case isReviewHard:
+      return nextDate({ date: dates[dates.length -1], numberOfDays: 1 })
+  }
 }
 
 function dateToString(date){
