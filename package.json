@@ -5,7 +5,8 @@
   "main": "pseudo-supermemo.js",
   "scripts": {
     "start": "node src/pseudo-supermemo.js",
-    "test": "jest"
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "keywords": [],
   "author": "",
