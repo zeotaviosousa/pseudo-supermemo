@@ -10,7 +10,8 @@ function pseudoSuperMemo(days, difficulty) {
   const isReviewEasy = (difficulty && difficulty[difficulty.length - 1]) === 'easy'
   const isReviewMedium = (difficulty && difficulty[difficulty.length - 1]) === 'medium'
   const isReviewHard = (difficulty && difficulty[difficulty.length - 1]) === 'hard'
-  const threeLastReviewEasy = (difficulty && difficulty.length >= 3) && [difficulty[difficulty.length - 3], difficulty[difficulty.length - 2], difficulty[difficulty.length - 1]]
+  const isReviewsLastEasy = (difficulty && difficulty.length >= 3) && 
+    [difficulty[difficulty.length - 3], difficulty[difficulty.length - 2], difficulty[difficulty.length - 1]].every(item => item === 'easy')
 
   if(isStudyFirst) {
     const currentDate = composeCurrentDate(days[0])
@@ -36,7 +37,7 @@ function pseudoSuperMemo(days, difficulty) {
     return nextDate
   }
 
-  if(threeLastReviewEasy) {
+  if(isReviewsLastEasy) {
     const currentDate = composeCurrentDate(days[days.length -1])
     const nextDate = composeNextDate(currentDate, 14)
     return nextDate
