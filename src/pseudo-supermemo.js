@@ -1,4 +1,4 @@
-// autoAvaliation: number
+// difficulties: 'easy' | 'medium' | 'hard' []
 // dates: date[]
 
 function pseudoSuperMemo(dates, difficulties) {
