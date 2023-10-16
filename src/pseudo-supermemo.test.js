@@ -71,6 +71,12 @@ it('should return +2 weeks as the next date when three last reviews are easy', (
   expect(nextDate).toEqual(twoMoreWeeks)
 })
 
+it('should return undefined when no date pass', () => {
+  const nextDate = pseudoSuperMemo()
+
+  expect(nextDate).toEqual(undefined)
+})
+
 
 /* 
     estudei

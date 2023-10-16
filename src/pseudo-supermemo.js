@@ -2,6 +2,7 @@
 // dates: date[]
 
 function pseudoSuperMemo(dates, difficulties) {
+  if(!dates) return
   const isStudyFirst = dates.length === 1
 
   if(isStudyFirst) return nextDate({ date: dates[0], numberOfDays: 1})
