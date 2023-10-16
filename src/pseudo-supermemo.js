@@ -1,23 +1,28 @@
 // autoAvaliation: number
 // days: date[]
 
-function pseudoSuperMemo(days, difficulty) {
+function pseudoSuperMemo(days, difficulties) {
   const isStudyFirst = days.length === 1
-  const isReviewFirst = days.length === 2
-  const isReviewFirstEasy = (difficulty && difficulty[0]) === 'easy'
-  const isReviewFirstMedium = (difficulty && difficulty[0]) === 'medium'
-  const isReviewFirstHard = (difficulty && difficulty[0]) === 'hard'
-  const isReviewEasy = (difficulty && difficulty[difficulty.length - 1]) === 'easy'
-  const isReviewMedium = (difficulty && difficulty[difficulty.length - 1]) === 'medium'
-  const isReviewHard = (difficulty && difficulty[difficulty.length - 1]) === 'hard'
-  const isReviewsLastEasy = (difficulty && difficulty.length >= 3) && 
-    [difficulty[difficulty.length - 3], difficulty[difficulty.length - 2], difficulty[difficulty.length - 1]].every(item => item === 'easy')
 
   if(isStudyFirst) {
     const currentDate = composeCurrentDate(days[0])
     const nextDate = composeNextDate(currentDate, 1)
     return nextDate
   }
+  
+  const isReviewFirst = days.length === 2
+  const isReviewFirstEasy = difficulties[0] === 'easy'
+  const isReviewFirstMedium = difficulties[0] === 'medium'
+  const isReviewFirstHard = difficulties[0] === 'hard'
+  const isReviewEasy = difficulties[difficulties.length - 1] === 'easy'
+  const isReviewMedium = difficulties[difficulties.length - 1] === 'medium'
+  const isReviewHard = difficulties[difficulties.length - 1] === 'hard'
+  const isReviewsLastEasy = difficulties.length >= 3 && 
+    [
+      difficulties[difficulties.length - 3], 
+      difficulties[difficulties.length - 2], 
+      difficulties[difficulties.length - 1]
+    ].every(difficulty => difficulty === 'easy')
 
   if(isReviewFirst && isReviewFirstEasy) {
     const currentDate = composeCurrentDate(days[1])
